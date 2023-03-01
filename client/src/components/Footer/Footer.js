@@ -3,6 +3,8 @@ import "../../css/Footer/Footer.css"
 
 export default function Footer() {
   return (
-    <footer>footer</footer>
+    <footer>
+      &copy; CopyWrite Ebrahim Elbarody 2023
+    </footer>
   )
 }
