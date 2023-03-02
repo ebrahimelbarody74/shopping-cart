@@ -1,0 +1,30 @@
+[
+    {
+        "id":"id1",
+        "tilte":"computer",
+        "imageurl":"./images/flash-1.png",
+        "price":30,
+        "sizes":["s","m"]
+    },
+    {
+        "id":"id1",
+        "tilte":"computer",
+        "imageurl":"./images/flash-2.png",
+        "price":30,
+        "sizes":["l","xl"]
+    },
+    {
+        "id":"id1",
+        "tilte":"computer",
+        "imageurl":"./images/flash-3.png",
+        "price":30,
+        "sizes":["s","m","l"]
+    },
+    {
+        "id":"id1",
+        "tilte":"computer",
+        "imageurl":"./images/flash-4.png",
+        "price":30,
+        "sizes":["s","xl"]
+    }
+]
