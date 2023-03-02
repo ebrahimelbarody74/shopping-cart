@@ -1,0 +1,36 @@
+.products{
+    width: 68%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+    .cart{
+        width: 24%;
+        img{
+            width: 100%;
+            min-height: 200px;
+            padding: 2px;
+            border: 1px solid #c0c0c0;
+        }
+        .product-desc{
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            p{
+
+            }
+            span{
+
+            }
+        }
+        button{
+            width: 100%;
+            color: #fff;
+            background-color: #2a5ea5;
+            border: none;
+            padding: 7px;
+            cursor: pointer;
+            border-radius: 5px;
+
+        }
+    }
+}

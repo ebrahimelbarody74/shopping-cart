@@ -1,0 +1,29 @@
+.products {
+  width: 68%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+}
+.products .cart {
+  width: 24%;
+}
+.products .cart img {
+  width: 100%;
+  min-height: 200px;
+  padding: 2px;
+  border: 1px solid #c0c0c0;
+}
+.products .cart .product-desc {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.products .cart button {
+  width: 100%;
+  color: #fff;
+  background-color: #2a5ea5;
+  border: none;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 5px;
+}
