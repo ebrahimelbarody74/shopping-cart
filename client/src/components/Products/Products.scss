@@ -1,8 +1,9 @@
 .products{
     width: 68%;
     display: flex;
-    justify-content: space-between;
+    gap: .3rem;
     padding-top: 30px;
+    flex-wrap: wrap;
     .cart{
         width: 24%;
         img{

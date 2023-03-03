@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import "../../css/Products/Products.css";
 import Modal from "react-modal";
 import ProductModal from "./ProductModal";
+
 export default function Products(props) {
   const [product, setProduct] = useState("");
+
   const openProduct = (product) => {
     setProduct(product);
   };
   const close = () => {
     setProduct(false);
   };
-
   return (
     <div className="products">
       {props.products.map((product) => (
@@ -22,7 +23,7 @@ export default function Products(props) {
             <p>{product.title}</p>
             <span>${product.price}</span>
           </div>
-          <button>Add To Cart</button>
+          <button onClick={() => props.addProduct(product)}>Add To Cart</button>
         </div>
       ))}
       <ProductModal product={product} close={close}></ProductModal>
