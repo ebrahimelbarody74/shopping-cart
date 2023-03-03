@@ -1,15 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Fliter from "./components/Fliter/Fliter";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Products from "./components/Products/Products";
 import data from "./data.json";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   const [products, setProducts] = useState(data);
   const [size, setSize] = useState();
   const [order, setOrder] = useState();
+
+  //add product
+  const [add, setAdd] = useState(JSON.parse(localStorage.getItem("add")) || []);
+
+  const addProduct = (cart) => {
+    const cartItems = [...add];
+    let isProductExist = false;
+    cartItems.forEach((p) => {
+      if (p.id == cart.id) {
+        p.Qty++;
+        isProductExist = true;
+      }
+    });
+    if (!isProductExist) {
+      cartItems.push({...cart, Qty: 1 });
+    }
+    setAdd(cartItems);
+  };
+  console.log(add);
+  // ================
+
+  // remove
+
+  const removeProduct = (product) => {
+    setAdd(add.filter((e) => e.id != product.id));
+  };
+  //////////////////////////
+
+  let price = add.reduce((e, a) => {
+    return e + a.price * +a.Qty ;
+  },0);
+  // console.log(price);
+
+  useEffect(() => {
+    localStorage.setItem("add", JSON.stringify(add));
+  }, [add]);
+
+  //size
 
   const handelSize = (e) => {
     setProducts(data);
@@ -24,6 +63,8 @@ function App() {
       setProducts(newProduct);
     }
   };
+
+  //price
   const handelOrder = (e) => {
     setOrder(e.target.value);
     let productClone = [...products];
@@ -38,12 +79,13 @@ function App() {
     });
     setProducts(newProduct);
   };
+
   return (
     <div className="layout">
       <Header></Header>
       <main>
         <div className="wrapper">
-          <Products products={products}></Products>
+          <Products products={products} addProduct={addProduct}></Products>
           <Fliter
             handelSize={handelSize}
             handelOrder={handelOrder}
@@ -51,6 +93,7 @@ function App() {
             order={order}
           ></Fliter>
         </div>
+        <Cart add={add} price={price} removeProduct={removeProduct}></Cart>
       </main>
       <Footer></Footer>
     </div>
