@@ -4,8 +4,6 @@ import Modal from "react-modal";
 import ProductModal from "./ProductModal";
 export default function Products(props) {
   const [product, setProduct] = useState("");
-  // const [isClose, setIsClose] = useState(true);
-
   const openProduct = (product) => {
     setProduct(product);
   };
