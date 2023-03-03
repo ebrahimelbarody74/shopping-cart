@@ -1,3 +1,42 @@
 .fliter{
     width: 30%;
+    background-color: #fff;
+    border: 1px solid #c0c0c0;
+    margin-top: 30px;
+    h2{
+        background-color: #2a5ea5;
+        color: #fff;
+        padding: 4px;
+        margin-bottom: 20px;
+    }
+    .row{
+        padding: 0 20px;
+        p{
+            margin-bottom: 20px;
+        }
+        .filter-size{
+            margin-bottom: 20px;
+            span{
+                display: block;
+            }
+            select{
+                width: 90%;
+                margin: auto;
+                border: 1px solid #eee;
+                padding: 10px;
+            }
+        }
+        .filter-order{
+            margin-bottom: 20px;
+            span{
+                display: block;
+            }
+            select{
+                width: 90%;
+                margin: auto;
+                border: 1px solid #eee;
+                padding: 10px;
+            }
+        }
+    }
 }
