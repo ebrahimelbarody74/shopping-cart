@@ -1,6 +1,6 @@
 import React from "react";
 import "../../css/Fliter/Fliter.css";
-export default function Fliter() {
+export default function Fliter(props) {
   return (
     <div className="fliter">
       <h2 className="filter-title">Filter</h2>
@@ -8,7 +8,7 @@ export default function Fliter() {
         <p>Number of Products: 4 Products</p>
         <div className="filter-size">
           <span>Filter</span>
-          <select>
+          <select value={props.size} onChange={props.handelSize}>
             <option value="All">All</option>
             <option value="XS">XS</option>
             <option value="S">S</option>
@@ -20,9 +20,9 @@ export default function Fliter() {
         </div>
         <div className="filter-order">
           <span>Order</span>
-          <select>
+          <select value={props.order} onChange={props.handelOrder}>
             <option value="Lastest">Lastest</option>
-            <option value="Loweter">Loweter</option>
+            <option value="Lowest">Lowest</option>
             <option value="highest">highest</option>
           </select>
         </div>
