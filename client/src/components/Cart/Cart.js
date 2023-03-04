@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Cart.scss";
+import CheckoutForm from "../CheckoutForm/CheckoutForm";
 
-export default function Cart(props) {
+function Cart(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const [value, setValue] = useState("");
+
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    console.log(value);
+  };
+  const changeValue = (e) => {
+    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  // const closeForm = () => {
+  //   ;
+  // };
   return (
     <div className="cart">
       <div className="cart-title">
@@ -21,9 +37,16 @@ export default function Cart(props) {
       {props.add.length > 0 && (
         <div className="total">
           <span>total Price: ${props.price}</span>
-          <button>select products</button>
+          <button onClick={() => setIsOpen(true)}>select products</button>
         </div>
       )}
+      <CheckoutForm
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        handelSubmit={handelSubmit}
+        changeValue={changeValue}
+      ></CheckoutForm>
     </div>
   );
 }
+export default Cart;
