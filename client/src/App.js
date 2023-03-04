@@ -29,7 +29,7 @@ function App() {
     }
     setAdd(cartItems);
   };
-  console.log(add);
+  // console.log(add);
   // ================
 
   // remove

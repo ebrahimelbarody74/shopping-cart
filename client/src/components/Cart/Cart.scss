@@ -49,3 +49,42 @@
 
     }
 }
+
+
+.checkout-form{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #ddd;
+    left: 0;
+    padding: 30px;
+    span{
+        display: flex;
+        justify-content: flex-end;
+        font-size: 30px;
+        cursor: pointer;
+    }
+    form{
+        width: 60%;
+        margin: auto;
+        >div{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+        input{
+            height: 40px;
+            border: 1px solid #c0c0c0;
+        }
+        button{
+            cursor: pointer;
+            height: 40px;
+            color: #fff;
+            background-color: #2a5ea5;
+            border: none;
+            padding: 7px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    }
+}
