@@ -6,6 +6,9 @@ import Header from "./components/Header/Header";
 import Products from "./components/Products/Products";
 import data from "./data.json";
 import Cart from "./components/Cart/Cart";
+// import store from "./store/store";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   const [products, setProducts] = useState(data);
@@ -25,7 +28,7 @@ function App() {
       }
     });
     if (!isProductExist) {
-      cartItems.push({...cart, Qty: 1 });
+      cartItems.push({ ...cart, Qty: 1 });
     }
     setAdd(cartItems);
   };
@@ -40,8 +43,8 @@ function App() {
   //////////////////////////
 
   let price = add.reduce((e, a) => {
-    return e + a.price * +a.Qty ;
-  },0);
+    return e + a.price * +a.Qty;
+  }, 0);
   // console.log(price);
 
   useEffect(() => {
@@ -81,22 +84,24 @@ function App() {
   };
 
   return (
-    <div className="layout">
-      <Header></Header>
-      <main>
-        <div className="wrapper">
-          <Products products={products} addProduct={addProduct}></Products>
-          <Fliter
-            handelSize={handelSize}
-            handelOrder={handelOrder}
-            size={size}
-            order={order}
-          ></Fliter>
-        </div>
-        <Cart add={add} price={price} removeProduct={removeProduct}></Cart>
-      </main>
-      <Footer></Footer>
-    </div>
+    <Provider store={store}>
+      <div className="layout">
+        <Header></Header>
+        <main>
+          <div className="wrapper">
+            <Products products={products} addProduct={addProduct}></Products>
+            <Fliter
+              handelSize={handelSize}
+              handelOrder={handelOrder}
+              size={size}
+              order={order}
+            ></Fliter>
+          </div>
+          <Cart add={add} price={price} removeProduct={removeProduct}></Cart>
+        </main>
+        <Footer></Footer>
+      </div>
+    </Provider>
   );
 }
 
