@@ -2,15 +2,21 @@ import React, { useState } from "react";
 import "./Cart.scss";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import Bounce from "react-reveal/Bounce";
+import { connect } from "react-redux";
+import { removeToCart } from "../../store/actions/cart";
+import Modal from "react-modal";
+import Order from "./Order";
 
 function Cart(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const [value, setValue] = useState("");
+  const [order, setOrder] = useState(false);
 
   const handelSubmit = (e) => {
     e.preventDefault();
     console.log(value);
+    setOrder(value);
   };
   const changeValue = (e) => {
     setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -22,7 +28,12 @@ function Cart(props) {
         <div className="cart-title">
           <h3>There is {props.add.length} Items In Cart</h3>
         </div>
-        {props.add.map((p) => (
+        <Order
+          order={order}
+          setOrder={setOrder}
+          cartItems={props.cartItems}
+        ></Order>
+        {props.cartItems.map((p) => (
           <div className="box" key={p.id}>
             <img src={p.imageurl} />
             <div className="cart-info">
@@ -30,7 +41,7 @@ function Cart(props) {
               <span>Qty:{p.Qty}</span>
               <span>Price: ${p.price}</span>
             </div>
-            <button onClick={() => props.removeProduct(p)}>Remove</button>
+            <button onClick={() => props.removeToCart(p)}>Remove</button>
           </div>
         ))}
         {props.add.length > 0 && (
@@ -49,4 +60,11 @@ function Cart(props) {
     </Bounce>
   );
 }
-export default Cart;
+export default connect(
+  (state) => {
+    return {
+      cartItems: state.cart.cartItems,
+    };
+  },
+  { removeToCart }
+)(Cart);
