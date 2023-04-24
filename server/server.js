@@ -12,6 +12,7 @@ app.use("/", router);
 app.use("/", routerOrder);
 
 // run DB
+require('dotenv').config();
 
 runDB();
 
