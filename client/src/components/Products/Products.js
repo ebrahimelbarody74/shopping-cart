@@ -18,6 +18,7 @@ function Products(props) {
   useEffect(() => {
     props.fetchProduct();
   }, []);
+  console.log(props.products);
 
   return (
     <Bounce left cascade>

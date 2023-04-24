@@ -19,6 +19,9 @@ function App() {
   const [add, setAdd] = useState(
     JSON.parse(localStorage.getItem("cartItems")) || []
   );
+  useEffect(() => {
+    setAdd(JSON.parse(localStorage.getItem("cartItems")) || []);
+  }, [add]);
   // useEffect(() => {
   //   setAdd(JSON.parse(localStorage.getItem("cartItems")));
   // }, [add]);
@@ -94,7 +97,7 @@ function App() {
         <Header></Header>
         <main>
           <div className="wrapper">
-            <Products products={products} ></Products>
+            <Products products={products}></Products>
             <Fliter
               // handelSize={handelSize}
               // handelOrder={handelOrder}
@@ -102,8 +105,9 @@ function App() {
               order={order}
             ></Fliter>
           </div>
-          <Cart add={add} 
-          // price={price} removeProduct={removeProduct}
+          <Cart
+            add={add}
+            // price={price} removeProduct={removeProduct}
           ></Cart>
         </main>
         <Footer></Footer>

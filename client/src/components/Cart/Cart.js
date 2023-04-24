@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Cart.scss";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 import Bounce from "react-reveal/Bounce";
@@ -6,17 +6,25 @@ import { connect } from "react-redux";
 import { removeToCart } from "../../store/actions/cart";
 import Modal from "react-modal";
 import Order from "./Order";
+import { createOrder, clearOrder } from "../../store/actions/order";
 
 function Cart(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const [value, setValue] = useState("");
-  const [order, setOrder] = useState(false);
+  // const [order, setOrder] = useState(false);
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
-    setOrder(value);
+    const order = {
+      name: value.name,
+      email: value.email,
+    };
+    props.createOrder(order);
+  };
+  const closeModel = () => {
+    props.clearOrder();
+    setIsOpen(false);
   };
   const changeValue = (e) => {
     setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -29,8 +37,9 @@ function Cart(props) {
           <h3>There is {props.add.length} Items In Cart</h3>
         </div>
         <Order
-          order={order}
-          setOrder={setOrder}
+          order={props.order}
+          closeModel={closeModel}
+          // setOrder={setOrder}
           cartItems={props.cartItems}
         ></Order>
         {props.cartItems.map((p) => (
@@ -64,7 +73,8 @@ export default connect(
   (state) => {
     return {
       cartItems: state.cart.cartItems,
+      order: state.order.order,
     };
   },
-  { removeToCart }
+  { removeToCart, createOrder, clearOrder }
 )(Cart);
