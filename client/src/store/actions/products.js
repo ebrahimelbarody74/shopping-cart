@@ -1,15 +1,17 @@
+import axios from "axios";
 import { FETCH_PRODUCT, FILTER_PRICE, FILTER_SIAZE } from "./type";
 
 export const fetchProduct = () => {
-  return (dispatch) => {
-    fetch("/api/products")
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch({
-          type: FETCH_PRODUCT,
-          data: data,
-        });
-      });
+  return async (dispatch) => {
+    const res = await axios.get(
+      "https://shopping-cart-fi6j.onrender.com/api/products"
+    );
+
+    console.log(res);
+    dispatch({
+      type: FETCH_PRODUCT,
+      data: res.data,
+    });
   };
 };
 
